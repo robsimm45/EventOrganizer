@@ -5,6 +5,7 @@ import { user } from "../../models/user";
 import { IState } from "../../reducers";
 import { selectEvent, getAllEvents } from "../../actions/events.action"
 import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 
 interface IeventFinderState {
     allEvents: event[]
@@ -36,19 +37,15 @@ export class eventFinder extends React.Component<IeventFinderProps,IeventFinderS
     handleClick = (event) => {
         try{
             this.props.selectEvent(event.target.value)
-            //link to the view router
+            
         } catch (err){
             console.log(err)
         }
     }
 
-    addNewEvent = (event) => {
-        //go to new event page
-    }
-
     createButtonList = () => {
         let clickAllEvents = this.props.allEvents.map((event, i) => {
-            <li key={i}><button onClick={this.handleClick}>{event.name}</button></li> 
+            <li key={i}><Link to='/events/${event.id}'><button onClick={this.handleClick}>{event.name}</button></Link></li> 
         });
 
         return clickAllEvents;
@@ -58,7 +55,9 @@ export class eventFinder extends React.Component<IeventFinderProps,IeventFinderS
         return(
             <div>
                 <div>
-                    <button onClick={this.addNewEvent}>Add Event</button>
+                    <Link to='/events/new'>
+                        <button>Add Event</button>
+                    </Link>
                 </div>
                 <div>
                     <label> Select Event </label>
