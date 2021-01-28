@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { event } from "../models/event";
 import { user } from "../models/user";
+import { eventsReducer } from "./events.reducer";
 import { userReducer } from "./user.reducer";
 
 
@@ -23,6 +24,6 @@ export interface IState{
 
 
 export const state = combineReducers<IState>({
-    currentUser: userReducer
-    events: eventReducer
+    currentUser: userReducer,
+    events: eventsReducer
 })
