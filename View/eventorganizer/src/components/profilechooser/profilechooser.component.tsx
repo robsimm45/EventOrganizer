@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { IState } from '../../reducers';
-import { getAllUsers } from '../../actions/user.action'
+import { getUserByID, getAllUsers } from '../../actions/user.action'
 import { RouteComponentProps } from 'react-router';
 import { user } from '../../models/user';
 
 interface IprofileChooserState{
     allUsers: user[]
+    selectedUser: number
 }
 
 interface IprofileChooserProps extends RouteComponentProps{
     allUsers: user[]
     getAllUsers: () => void
+    getUserByID: (id:number) => void
 }
 
 export class profileChooser extends React.Component<IprofileChooserProps, IprofileChooserState>{
@@ -27,14 +29,42 @@ export class profileChooser extends React.Component<IprofileChooserProps, Iprofi
             allUsers : this.props.allUsers
         })
     }
+
+    showAllUsers = () =>{
+        let showUsers = this.props.allUsers.map((user, id) =>{
+            return(
+                <option key={id} value={user.id}>{user.firstName + ' ' + user.lastName}</option>
+            )
+        })
+
+        return showUsers;
+    }
+
+    handleChange = (event) => {
+        event.preventDefault()
+        this.setState({
+            selectedUser : event.target.value
+        })
+    }
+
+    submitChange = (event) => {
+        event.preventDefault()
+        try{
+            this.props.getUserByID(this.state.selectedUser);
+        } catch (err) {
+            console.log(err)
+        }
+    }
     
     render(){
         return (
             <div>
-                <form>
+                <form onSubmit={this.submitChange}>
                     <label>
                         Choose your profile
-                        <label></label>
+                        <select value={this.state.selectedUser} onChange={this.handleChange}>
+                            {this.showAllUsers}
+                        </select>
                     </label>
                 </form>
             </div>
@@ -49,7 +79,8 @@ const mapStateToProps = (state:IState) =>{
 }
 
 const mapActionToProps = {
-    getAllUsers
+    getAllUsers,
+    getUserByID
 }
 
 
