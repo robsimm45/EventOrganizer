@@ -19,7 +19,9 @@ interface IeventFinderProps extends RouteComponentProps{
 }
 
 export class eventFinder extends React.Component<IeventFinderProps,IeventFinderState> {
-    
+    state = {
+        allEvents: []
+    }
 
 
     componentWillMount(){
