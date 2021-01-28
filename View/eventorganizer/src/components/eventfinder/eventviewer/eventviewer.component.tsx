@@ -2,24 +2,28 @@ import React from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
+import { updateEvent } from "../../../actions/events.action";
 import { event } from "../../../models/event";
 import { user } from "../../../models/user";
 import { IState } from "../../../reducers";
 
 interface IeventViewerState {
     canEdit: boolean
+    canRSVP: boolean
 }
 
 interface IeventViewerProps extends RouteComponentProps{
     currentUser: user
     currentEvent: event
+    updateEvent: (currentEvent:event) => void
 
 }
 
 
 export class eventViewer extends React.Component<IeventViewerProps,IeventViewerState> {
     state = {
-        canEdit: false
+        canEdit: false,
+        canRSVP: true
     }
 
     componentWillMount(){
@@ -29,7 +33,16 @@ export class eventViewer extends React.Component<IeventViewerProps,IeventViewerS
     canUserEdit = () => {
         if(this.props.currentUser === this.props.currentEvent.organizer){
             this.setState({
-                canEdit: true
+                canEdit: true,
+                canRSVP: false
+            })
+        }
+    }
+
+    canUserRSVP = () =>{
+        if(this.props.currentEvent.rsvp.includes(this.props.currentUser)){
+            this.setState({
+                canRSVP: false
             })
         }
     }
@@ -40,6 +53,17 @@ export class eventViewer extends React.Component<IeventViewerProps,IeventViewerS
         });
 
         return RSVPlist;
+    }
+
+    userRSVP = () =>{
+        let tempEvent:event = this.props.currentEvent;
+        tempEvent.rsvp.push(this.props.currentUser);
+        try{
+            this.props.updateEvent(tempEvent);
+        }catch(err){
+            console.log(err)
+        }
+        
     }
 
     render(){
@@ -63,8 +87,12 @@ export class eventViewer extends React.Component<IeventViewerProps,IeventViewerS
                 <ul>
                     {this.listRSVP}
                 </ul>
+                <button onChange={this.userRSVP}>RSVP</button>
 
-                {this.state.canEdit ? <Link to='/events/viewer/edit'><button>Edit</button></Link> : <div></div>}
+                <div>
+                    {this.state.canEdit ? <Link to='/events/viewer/edit'><button>Edit</button></Link> : <div></div>}
+                </div>
+                
 
             </div>
         )
@@ -79,7 +107,7 @@ const mapStateToProps = (state:IState) =>{
 }
 
 const mapActionToProps = {
-
+    updateEvent
 }
 
 
