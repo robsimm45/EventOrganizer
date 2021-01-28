@@ -18,10 +18,11 @@ export interface IeventState{
 
 export interface IState{
     currentUser:IcurrentUserState
-    event:IeventState
+    events:IeventState
 }
 
 
 export const state = combineReducers<IState>({
     currentUser: userReducer
+    events: eventReducer
 })
