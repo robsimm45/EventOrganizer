@@ -22,6 +22,7 @@ export const getAllEvents = () => async (dispatch) =>{
     })
 }
 
+//for when the user clicks from the list of events
 export const selectEvent = (currentEvent:Event) => dispatch =>{
     dispatch({
         type: eventTypes.selectedEvent,

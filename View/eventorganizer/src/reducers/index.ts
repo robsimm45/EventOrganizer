@@ -5,7 +5,6 @@ import { eventsReducer } from "./events.reducer";
 import { userReducer } from "./user.reducer";
 
 
-//make the other models then reducers
 
 export interface IcurrentUserState{
     self:user

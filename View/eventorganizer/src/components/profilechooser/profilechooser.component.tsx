@@ -1,9 +1,31 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { IState } from '../../reducers';
+import { getAllUsers } from '../../actions/user.action'
+import { RouteComponentProps } from 'react-router';
+import { user } from '../../models/user';
 
-export class profileChooser extends React.Component<any, any>{
+interface IprofileChooserState{
+    allUsers: user[]
+}
+
+interface IprofileChooserProps extends RouteComponentProps{
+    allUsers: user[]
+    getAllUsers: () => void
+}
+
+export class profileChooser extends React.Component<IprofileChooserProps, IprofileChooserState>{
     
-    chooseUser = (event) => {
-        this.
+    componentWillMount(){
+        try{
+            this.props.getAllUsers();
+        } catch (err){
+            console.log(err);
+        }
+
+        this.setState({
+            allUsers : this.props.allUsers
+        })
     }
     
     render(){
@@ -19,3 +41,16 @@ export class profileChooser extends React.Component<any, any>{
         )
     }
 }
+
+const mapStateToProps = (state:IState) =>{
+    return{
+        allUsers: state.currentUser.allUsers
+    }
+}
+
+const mapActionToProps = {
+    getAllUsers
+}
+
+
+export default connect(mapStateToProps,mapActionToProps)(profileChooser)
