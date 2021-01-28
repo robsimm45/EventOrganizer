@@ -4,8 +4,11 @@ import './App.css';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { profileChooser } from './components/profilechooser/profilechooser.component';
-import { eventFinder } from './components/eventfinder/eventfinder.component';
+import profilechooserComponent from './components/profilechooser/profilechooser.component';
+import eventfinderComponent from './components/eventfinder/eventfinder.component';
+import eventviewerComponent from './components/eventfinder/eventviewer/eventviewer.component';
+import eventeditorComponent from './components/eventfinder/eventviewer/eventeditor/eventeditor.component';
+import eventcreatorComponent from './components/eventfinder/eventcreator/eventcreator.component';
 
 const App: React.FC = () => {
   return (
@@ -14,8 +17,11 @@ const App: React.FC = () => {
     
       <div className="App">
         <Switch>
-          <Route path='/profileSelect' component={profileChooser}/>
-          <Route path='/events' component={eventFinder}/>
+          <Route path='/profileSelect' component={profilechooserComponent}/>
+          <Route path='/events' component={eventfinderComponent}/>
+          <Route path='/events/view' component={eventviewerComponent}/>
+          <Route path='/events/edit' component={eventeditorComponent}/>
+          <Route path='/events/add' component={eventcreatorComponent}/>
         </Switch>
       </div>
       </BrowserRouter>
