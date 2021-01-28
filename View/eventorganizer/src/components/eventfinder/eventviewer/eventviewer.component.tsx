@@ -72,13 +72,15 @@ export class eventViewer extends React.Component<IeventViewerProps,IeventViewerS
                 <h2>{this.props.currentEvent.name}</h2>
 
                 <label>Start Date</label>
-                <p>{this.props.currentEvent.startDate.getDate()}</p>
+                <p>{this.props.currentEvent.startDate.getMonth() + '-' + this.props.currentEvent.startDate.getDay() + 
+                    '-' + this.props.currentEvent.startDate.getFullYear()}</p>
                 <label>Start Time</label>
-                <p>{this.props.currentEvent.startDate.getTime()}</p>
+                <p>{this.props.currentEvent.startDate.getHours() + ':' + this.props.currentEvent.startDate.getMinutes()}</p>
                 <label>End Date</label>
-                <p>{this.props.currentEvent.endDate.getDate()}</p>
+                <p>{this.props.currentEvent.endDate.getMonth() + '-' + this.props.currentEvent.endDate.getDay() + 
+                    '-' + this.props.currentEvent.endDate.getFullYear()}</p>
                 <label>End Time</label>
-                <p>{this.props.currentEvent.endDate.getTime()}</p>
+                <p>{this.props.currentEvent.endDate.getHours() + ':' + this.props.currentEvent.endDate.getMinutes()}</p>
                 <label>Location</label>
                 <p>{this.props.currentEvent.location}</p>
                 <label>Organizer</label>
