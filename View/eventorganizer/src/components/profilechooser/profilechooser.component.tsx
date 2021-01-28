@@ -60,12 +60,10 @@ export class profileChooser extends React.Component<IprofileChooserProps, Iprofi
         return (
             <div>
                 <form onSubmit={this.submitChange}>
-                    <label>
-                        Choose your profile
+                    <label> Choose your profile </label>
                         <select value={this.state.selectedUser} onChange={this.handleChange}>
                             {this.showAllUsers}
                         </select>
-                    </label>
                 </form>
             </div>
         )

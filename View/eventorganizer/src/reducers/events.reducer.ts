@@ -5,6 +5,7 @@ const initialState: IeventState = {
     allEvents: [],
     selectedEvent : {
         id: 0,
+        name: '',
         startDate: null,
         endDate: null,
         location: '',

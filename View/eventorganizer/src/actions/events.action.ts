@@ -1,4 +1,5 @@
 import { eventClient } from "../axios/event-client"
+import {event} from "../models/event"
 
 export const eventTypes = {
     foundAll: 'ALL_EVENTS_FOUND',
@@ -23,14 +24,14 @@ export const getAllEvents = () => async (dispatch) =>{
 }
 
 //for when the user clicks from the list of events
-export const selectEvent = (currentEvent:Event) => dispatch =>{
+export const selectEvent = (currentEvent:event) => dispatch =>{
     dispatch({
         type: eventTypes.selectedEvent,
         payload: currentEvent
     });
 }
 
-export const updateEvent = (currentEvent:Event) => async dispatch =>{
+export const updateEvent = (currentEvent:event) => async dispatch =>{
     try{
         const response = await eventClient.patch('', currentEvent);
         if(response.status == 200){
@@ -48,7 +49,7 @@ export const updateEvent = (currentEvent:Event) => async dispatch =>{
     }
 }
 
-export const createEvent = (currentEvent:Event) => async dispatch =>{
+export const createEvent = (currentEvent:event) => async dispatch =>{
     try{
         const response = await eventClient.post('', currentEvent);
         if(response.status == 200){
