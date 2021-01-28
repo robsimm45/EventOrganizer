@@ -1,6 +1,6 @@
 import { eventClient } from "../axios/event-client"
 
-export const eventType = {
+export const eventTypes = {
     foundAll: 'ALL_EVENTS_FOUND',
     selectedEvent: 'EVENT_SELECTED',
     createdEvent: 'EVENT_CREATED',
@@ -14,7 +14,7 @@ export const eventType = {
 export const getAllEvents = () => async (dispatch) =>{
     eventClient.get('').then(response => {
         dispatch({
-            type: eventType.foundAll,
+            type: eventTypes.foundAll,
             payload: response.data
         })
     }).catch(error=>{
@@ -24,7 +24,7 @@ export const getAllEvents = () => async (dispatch) =>{
 
 export const selectEvent = (currentEvent:Event) => dispatch =>{
     dispatch({
-        type: eventType.selectedEvent,
+        type: eventTypes.selectedEvent,
         payload: currentEvent
     });
 }
@@ -36,7 +36,7 @@ export const updateEvent = (currentEvent:Event) => async dispatch =>{
             const newResponse = await eventClient.get('');
             if(newResponse.status == 200){
                 dispatch({
-                    type: eventType.updatedEvent,
+                    type: eventTypes.updatedEvent,
                     payload: newResponse.data
                 });  
             }
@@ -54,7 +54,7 @@ export const createEvent = (currentEvent:Event) => async dispatch =>{
             const newResponse = await eventClient.get('');
             if(newResponse.status == 200){
                 dispatch({
-                    type: eventType.createdEvent,
+                    type: eventTypes.createdEvent,
                     payload: newResponse.data
                 })
             }
@@ -71,7 +71,7 @@ export const deleteEvent = (eventId:number) => async dispatch =>{
             const newResponse = await eventClient.get('');
             if(newResponse.status == 200){
                 dispatch({
-                    type: eventType.deletedEvent,
+                    type: eventTypes.deletedEvent,
                     payload: newResponse.data
                 });
             }
