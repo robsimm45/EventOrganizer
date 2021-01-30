@@ -11,6 +11,4 @@ public interface UserRepo extends JpaRepository<User, Integer>{
 	public List<User> findAll();
 	
 	public User findById(int id);
-	
-	public User findByFirstNameAndLastName(String firstName, String lastName);
 }

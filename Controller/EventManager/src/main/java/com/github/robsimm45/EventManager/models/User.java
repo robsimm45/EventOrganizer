@@ -20,6 +20,14 @@ public class User{
 	@NotNull
 	private String email;
 
+	public User(int userId, @NotNull String firstName, @NotNull String lastName, @NotNull String email) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
 	public int getUserId() {
 		return userId;
 	}

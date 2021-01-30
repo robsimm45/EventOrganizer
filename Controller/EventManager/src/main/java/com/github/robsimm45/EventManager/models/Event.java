@@ -6,6 +6,8 @@ import java.util.Arrays;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Events")
 public class Event{
@@ -26,10 +28,14 @@ public class Event{
 	
 	private String location;
 	
-	@OneToMany
+	@ManyToOne
+	@JoinColumn(name = "organizer")
 	private User organizer;
 	
 	@ManyToMany
+	@JoinTable(name = "RSVP", joinColumns = { @JoinColumn(name = "eventId") }, inverseJoinColumns = {
+	@JoinColumn(name = "userId") })
+	@JsonIgnore
 	private User[] rsvp;
 	
 	public int getEventId() {
