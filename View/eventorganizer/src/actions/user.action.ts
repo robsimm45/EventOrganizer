@@ -18,7 +18,7 @@ export const getUserByID = (id:number) => async (dispatch) => {
 }
 
 export const getAllUsers = () => async (dispatch) => {
-    userClient.get('/id').then(response =>{
+    userClient.get('').then(response =>{
         dispatch({
             type: userTypes.Found_All,
             payload: response.data
