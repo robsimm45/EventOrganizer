@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.github.robsimm45.EventManager.models.User;
+import com.github.robsimm45.EventManager.models.Users;
 
-public interface UserRepo extends JpaRepository<User, Integer>{
+public interface UserRepo extends JpaRepository<Users, Integer>{
 	
-	public List<User> findAll();
+	public List<Users> findAll();
 	
-	public User findById(int id);
+	public Users findById(int id);
 }

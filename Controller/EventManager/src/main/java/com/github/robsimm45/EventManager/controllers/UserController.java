@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.robsimm45.EventManager.models.User;
+import com.github.robsimm45.EventManager.models.Users;
 import com.github.robsimm45.EventManager.services.UserService;
 
 @RestController
@@ -18,12 +18,12 @@ public class UserController{
 	private UserService userService;
 	
 	@GetMapping
-	public List<User> getAllUsers(){
+	public List<Users> getAllUsers(){
 		return userService.findAll();
 	}
 	
 	@GetMapping("{id}")
-	public User findUserById(@PathVariable int id) {
+	public Users findUserById(@PathVariable int id) {
 		return userService.findById(id);
 	}
 }

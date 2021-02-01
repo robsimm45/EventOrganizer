@@ -2,6 +2,7 @@ package com.github.robsimm45.EventManager.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.robsimm45.EventManager.models.Event;
@@ -10,6 +11,7 @@ import com.github.robsimm45.EventManager.repos.EventRepo;
 @Service
 public class EventServiceImpl implements EventService {
 
+	@Autowired
 	EventRepo eventRepo;
 	
 	@Override
@@ -24,7 +26,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event findEvent(int id) {
-		return eventRepo.findEventById(id);
+		return eventRepo.findByEventId(id);
 	}
 
 	@Override

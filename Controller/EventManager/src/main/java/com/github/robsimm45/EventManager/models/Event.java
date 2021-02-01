@@ -13,37 +13,41 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Event{
 	
 	@Id
-	@Column(name = "eventId", unique = true)
+	@Column(name = "eventid", unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int EventId;
+	private int eventId;
 	
 	@NotNull
+	@Column(name="eventname")
 	private String name;
 	
 	@NotNull
+	@Column(name="starttime")
 	private Date startDate;
 	
 	@NotNull
+	@Column(name="endtime")
 	private Date endDate;
 	
 	private String location;
 	
 	@ManyToOne
 	@JoinColumn(name = "organizer")
-	private User organizer;
+	private Users organizer;
 	
 	@ManyToMany
-	@JoinTable(name = "RSVP", joinColumns = { @JoinColumn(name = "eventId") }, inverseJoinColumns = {
-	@JoinColumn(name = "userId") })
+	@JoinTable(name = "RSVP", joinColumns = { @JoinColumn(name = "eventid") }, inverseJoinColumns = {
+	@JoinColumn(name = "userid") })
 	@JsonIgnore
-	private User[] rsvp;
+	@OrderColumn
+	private Users[] rsvp;
 	
 	public int getEventId() {
-		return EventId;
+		return eventId;
 	}
 
 	public void setEventId(int eventId) {
-		EventId = eventId;
+		this.eventId = eventId;
 	}
 
 	public String getName() {
@@ -78,19 +82,19 @@ public class Event{
 		this.location = location;
 	}
 
-	public User getOrganizer() {
+	public Users getOrganizer() {
 		return organizer;
 	}
 
-	public void setOrganizer(User organizer) {
+	public void setOrganizer(Users organizer) {
 		this.organizer = organizer;
 	}
 
-	public User[] getRsvp() {
+	public Users[] getRsvp() {
 		return rsvp;
 	}
 
-	public void setRsvp(User[] rsvp) {
+	public void setRsvp(Users[] rsvp) {
 		this.rsvp = rsvp;
 	}
 
@@ -98,7 +102,7 @@ public class Event{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + EventId;
+		result = prime * result + eventId;
 		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -117,7 +121,7 @@ public class Event{
 		if (getClass() != obj.getClass())
 			return false;
 		Event other = (Event) obj;
-		if (EventId != other.EventId)
+		if (eventId != other.eventId)
 			return false;
 		if (endDate == null) {
 			if (other.endDate != null)
@@ -151,7 +155,7 @@ public class Event{
 
 	@Override
 	public String toString() {
-		return "Event [EventId=" + EventId + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate
+		return "Event [EventId=" + eventId + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", location=" + location + ", organizer=" + organizer + ", rsvp=" + Arrays.toString(rsvp) + "]";
 	}
 

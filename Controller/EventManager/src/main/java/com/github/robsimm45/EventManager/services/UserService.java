@@ -2,11 +2,11 @@ package com.github.robsimm45.EventManager.services;
 
 import java.util.List;
 
-import com.github.robsimm45.EventManager.models.User;
+import com.github.robsimm45.EventManager.models.Users;
 
 public interface UserService {
 	
-	List<User> findAll();
+	List<Users> findAll();
 	
-	User findById(int id);
+	Users findById(int id);
 }

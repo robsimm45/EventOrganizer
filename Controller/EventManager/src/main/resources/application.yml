@@ -20,4 +20,7 @@ spring:
     properties:
       hibernate: 
         default_schema: ${DB_SCHEMA}
+        naming:
+            implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: false

@@ -14,15 +14,15 @@ import com.github.robsimm45.EventManager.models.Event;
 public interface EventRepo extends JpaRepository<Event, Integer>{
 	// need all, update, find, create, delete
 	
-	public List<Event> findAllEvents();
+	public List<Event> findAll();
 	
-	public Event findEventById(int id);
+	public Event findByEventId(int id);
 	
 	@Modifying
 	@Query(value = "INSERT INTO eventorganizer.user_group (eventId, eventName, startTime, endTime, location, organizer ) VALUES (:eventId, :eventName, :startTime, "
 			+ ":endTime, :location, :organizer)", nativeQuery = true)
 	@Transactional
-	public void createEvent (@Param("eventId") int id, @Param("eventName") String name, @Param("startTime") Date startDate, @Param("endDate") Date endDate, @Param("location") String location, @Param("organizer") int organizerId);
+	public void createEvent (@Param("eventId") int id, @Param("eventName") String name, @Param("startTime") Date startDate, @Param("endTime") Date endDate, @Param("location") String location, @Param("organizer") int organizerId);
 	
 	/*@Modifying
 	@Query(value = "UPDATE eventorganizer.user_group SET (eventName = :eventName, startTime = :startTime, endTime = :endTime, location = : location, organizer = :organizer )" 

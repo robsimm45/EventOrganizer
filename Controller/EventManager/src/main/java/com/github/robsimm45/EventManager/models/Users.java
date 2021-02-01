@@ -5,22 +5,29 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Users")
-public class User{
+public class Users{
 	@Id
-	@Column(name = "userId", unique = true)
+	@Column(name = "userid", unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	
 	@NotNull
+	@Column(name = "firstname")
 	private String firstName;
 	
 	@NotNull
+	@Column(name = "lastname")
 	private String lastName;
 	
 	@NotNull
+	@Column(name = "email")
 	private String email;
 
-	public User(int userId, @NotNull String firstName, @NotNull String lastName, @NotNull String email) {
+	public Users() {
+		
+	}
+	
+	public Users(int userId, @NotNull String firstName, @NotNull String lastName, @NotNull String email) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -79,7 +86,7 @@ public class User{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Users other = (Users) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;

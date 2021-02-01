@@ -4,13 +4,14 @@ create table Events( eventId int not null, eventName varchar(255), startTime dat
 
 create table RSVP(eventID int not null, userId int not null);
 
-Insert into Users( userId, firstName, lastName) values (1, "Organizer", "Jones");
+Insert into Users( userId, firstName, lastName, email) values (1, "Organizer", "Jones", "OrgJones@gmail.com");
 
-Insert into Users( userId, firstName, lastName) values (2, "Alicia", "Santiago");
+Insert into Users( userId, firstName, lastName, email) values (2, "Alicia", "Santiago", "AlSantiago@gmail.com");
 
 INSERT INTO eventorganizer.Events (eventId, eventName, startTime, endTime, location, organizer ) VALUES (25, "SleepOver", '2021-03-24 21:00:00', '2021-03-25 08:00:00', 'Jimmy house', 2);
 
 Select * from Events;
 
+select database();
 
 drop table Users;
