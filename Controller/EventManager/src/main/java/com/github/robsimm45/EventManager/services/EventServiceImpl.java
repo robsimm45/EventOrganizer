@@ -1,4 +1,4 @@
-package com.github.robsimm45.services;
+package com.github.robsimm45.EventManager.services;
 
 import java.util.List;
 

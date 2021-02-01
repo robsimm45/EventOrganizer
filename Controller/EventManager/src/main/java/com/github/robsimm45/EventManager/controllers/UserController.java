@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.robsimm45.EventManager.models.User;
-import com.github.robsimm45.services.UserService;
+import com.github.robsimm45.EventManager.services.UserService;
 
 @RestController
 @RequestMapping(value = "user")

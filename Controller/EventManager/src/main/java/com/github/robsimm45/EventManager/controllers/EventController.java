@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.robsimm45.EventManager.models.Event;
-import com.github.robsimm45.services.EventService;
+import com.github.robsimm45.EventManager.services.EventServiceImpl;
 
 @RestController
 @RequestMapping(value = "event")
 public class EventController{
 	@Autowired
-	private EventService eventService;
+	private EventServiceImpl eventService;
 	
 	@GetMapping
 	public List<Event> getAllEvents(){
