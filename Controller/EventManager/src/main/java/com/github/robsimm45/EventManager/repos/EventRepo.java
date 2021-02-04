@@ -19,7 +19,7 @@ public interface EventRepo extends JpaRepository<Event, Integer>{
 	public Event findByEventId(int id);
 	
 	@Modifying
-	@Query(value = "INSERT INTO eventorganizer.user_group (eventId, eventName, startTime, endTime, location, organizer ) VALUES (:eventId, :eventName, :startTime, "
+	@Query(value = "INSERT INTO eventorganizer.Events (eventId, eventName, startTime, endTime, location, organizer ) VALUES (:eventId, :eventName, :startTime, "
 			+ ":endTime, :location, :organizer)", nativeQuery = true)
 	@Transactional
 	public void createEvent (@Param("eventId") int id, @Param("eventName") String name, @Param("startTime") Date startDate, @Param("endTime") Date endDate, @Param("location") String location, @Param("organizer") int organizerId);

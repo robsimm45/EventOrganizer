@@ -1,6 +1,7 @@
 package com.github.robsimm45.EventManager.models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 import javax.persistence.*;
@@ -23,11 +24,11 @@ public class Event{
 	
 	@NotNull
 	@Column(name="starttime")
-	private Date startDate;
+	private Timestamp startDate;
 	
 	@NotNull
 	@Column(name="endtime")
-	private Date endDate;
+	private Timestamp endDate;
 	
 	private String location;
 	
@@ -58,19 +59,19 @@ public class Event{
 		this.name = name;
 	}
 
-	public Date getStartDate() {
+	public  Timestamp getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(Timestamp startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public Timestamp getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(Timestamp endDate) {
 		this.endDate = endDate;
 	}
 

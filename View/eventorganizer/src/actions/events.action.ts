@@ -33,9 +33,9 @@ export const selectEvent = (currentEvent:event) => dispatch =>{
 
 export const updateEvent = (currentEvent:event) => async dispatch =>{
     try{
-        const response = await eventClient.patch('', currentEvent);
+        const response = await eventClient.patch('/update', currentEvent);
         if(response.status == 200){
-            const newResponse = await eventClient.get('');
+            const newResponse = await eventClient.get('' + currentEvent.id);
             if(newResponse.status == 200){
                 dispatch({
                     type: eventTypes.updatedEvent,

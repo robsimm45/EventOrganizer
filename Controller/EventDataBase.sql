@@ -2,9 +2,9 @@ create table Users( userId int not null,  firstName varchar(255) not null, lastN
 
 create table Events( eventId int not null, eventName varchar(255), startTime datetime not null, endTime datetime not null, location varchar(255) not null, organizer int not null, primary key (eventId));
 
-create table RSVP(eventID int not null, userId int not null);
+create table RSVP(rsvp_order int not null, eventID int not null, userId int not null, primary key (rsvp_order));
 
-Insert into Users( userId, firstName, lastName, email) values (1, "Organizer", "Jones", "OrgJones@gmail.com");
+Insert into Users( userId, firstName, lastName, email) values (1, "Organizer", "Jones", "eventseventsOrgJones@gmail.com");
 
 Insert into Users( userId, firstName, lastName, email) values (2, "Alicia", "Santiago", "AlSantiago@gmail.com");
 
@@ -14,4 +14,4 @@ Select * from Events;
 
 select database();
 
-drop table Users;
+drop table RSVP;
